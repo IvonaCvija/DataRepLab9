@@ -16,9 +16,9 @@ function BookItems(props) {
                     </blockquote>
                 </CardBody>
             </Card>
-            <h3>{props.myBook.title}</h3>
+            {/* <h3>{props.myBook.title}</h3>
             <img src={props.myBook.thumbnailUrl}></img>
-            <p>{props.myBook.authors[0]}</p>
+            <p>{props.myBook.authors[0]}</p> */}
         </div>
     );
 }
