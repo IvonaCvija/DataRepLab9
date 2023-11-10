@@ -7,20 +7,23 @@ function Read() {
 
     useEffect(
         () => {
-            //async operation
-            axios.get('https://jsonblob.com/api/jsonblob/1161593332966481920')
-                .then(
-                    //callback function, get data(all data from the body), but here just from books
-                    (response) => {
-                        setData(response.data.books)
-                    }
-                )
-                //error message
-                .catch(
-                    (error) => {
-                        console.log(error);
-                    }
-                );
+
+            // for (let i = 0; i < 1000000000; i++){}
+
+                //async operation
+                axios.get('http://localhost:4000/api/books')
+                    .then(
+                        //callback function, get data(all data from the body), but here just from books
+                        (response) => {
+                            setData(response.data.myBooks)
+                        }
+                    )
+                    //error message
+                    .catch(
+                        (error) => {
+                            console.log(error);
+                        }
+                    );
         }, []
     );
     return (
