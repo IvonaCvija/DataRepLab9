@@ -15,7 +15,7 @@ function Read() {
                     .then(
                         //callback function, get data(all data from the body), but here just from books
                         (response) => {
-                            setData(response.data.myBooks)
+                            setData(response.data)
                         }
                     )
                     //error message
