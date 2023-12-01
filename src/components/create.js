@@ -15,15 +15,15 @@ function Create() {
             " Authors: " + authors);
 
         const book = {
-            title:title,
-            cover:thumbnailUrl,
-            author:authors
+            title: title,
+            cover: thumbnailUrl,
+            author: authors
         }
 
         //makes a http request and output to console browser
-        axios.post('http://localhost:4000/api/book',book)
-        .then()
-        .catch();    
+        axios.post('http://localhost:4000/api/book/', book)
+            .then()
+            .catch();
     }
 
     return (

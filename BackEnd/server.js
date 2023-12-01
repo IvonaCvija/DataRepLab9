@@ -29,43 +29,50 @@ async function main() {
 }
 
 const bookSchema = new mongoose.Schema({
-    title:String,
-    cover:String,
-    author:String
+    title: String,
+    cover: String,
+    author: String
 })
-    
+
+app.delete('/api/book/:id', async (req, res) => {
+    console.log("Delete: " + req.params.id)
+
+    let book = await bookModel.findByIdAndDelete(req.params.id);
+    res.send(book);
+})
+
 const bookModel = mongoose.model(`books`, bookSchema)
 
 //updating existing data using id
-app.put('/api/book/:id', async (req,res)=>{
+app.put('/api/book/:id', async (req, res) => {
 
-    console.log("Update: "+req.params.id);
+    console.log("Update: " + req.params.id);
 
     //await so it changes it only after finding the book
-    let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, {new:true});
+    let book = await bookModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.send(book);
 })
 
 app.post('/api/book', (req, res) => {
     console.log(req.body);
     bookModel.create({
-        title:req.body.title,
-        cover:req.body.cover,
-        author:req.body.author
+        title: req.body.title,
+        cover: req.body.cover,
+        author: req.body.author
     })
-    //res.send("Data Received!");
-    .then(() =>{res.send("Book created")})
-    .catch(() =>{res.send("Book not created")})
+        //res.send("Data Received!");
+        .then(() => { res.send("Book created") })
+        .catch(() => { res.send("Book not created") })
 })
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.get(`/api/book/:id`, async (req, res)=>{
+app.get(`/api/book/:id`, async (req, res) => {
     console.log(req.params.id);
 
-    let book = await bookModel.findById({_id:req.params.id})
+    let book = await bookModel.findById({ _id: req.params.id })
     res.send(book);
 })
 
@@ -74,7 +81,7 @@ app.listen(port, () => {
 })
 
 app.get('/api/books', async (req, res) => {
-    
+
     let books = await bookModel.find({});
     res.json(books);
 })
